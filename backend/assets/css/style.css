@@ -1,0 +1,17 @@
+.main-header .sidebar-toggle:before {
+  content: "";
+}
+
+.content-wrap {
+  min-height: 0 !important;
+  overflow: auto;
+}
+
+.status__active {
+  font-size: 10px;
+  background: #3C91E6;
+  padding: 6px 16px;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: 700;
+}

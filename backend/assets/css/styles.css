@@ -1,0 +1,19 @@
+
+.status__active {
+    font-size: 10px;
+    background: green;
+    padding: 6px 16px;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.status__disabled {
+    font-size: 10px;
+    background: red;
+    padding: 6px 16px;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
