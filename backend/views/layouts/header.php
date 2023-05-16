@@ -88,7 +88,7 @@ if (isset($_SESSION['user'])) {
 
             <li>
                 <a href="index.php?controller=brand&action=index">
-                    <i class="fa fa-app-store"></i> <span> Quản lý loại sản phẩm</span>
+                    <i class="fa fa-app-store"></i> <span> Quản lý thương hiệu</span>
                     <span class="pull-right-container">
               <!--<small class="label pull-right bg-green">new</small>-->
             </span>

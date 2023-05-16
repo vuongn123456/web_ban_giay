@@ -1,5 +1,6 @@
 <h2>Thêm mới sản phẩm</h2>
 <form action="" method="post" enctype="multipart/form-data">
+
     <div class="form-group">
         <label for="category_id">Chọn danh mục</label>
         <select name="category_id" class="form-control" id="category_id">
@@ -15,6 +16,23 @@
             <?php endforeach; ?>
         </select>
     </div>
+
+    <div class="form-group">
+        <label for="brand_id">Chọn thương hiệu</label>
+        <select name="brand_id" class="form-control" id="brand_id">
+            <?php foreach ($brands as $brand):
+                $selected = '';
+                if (isset($_POST['brand_id']) && $brand['id'] == $_POST['brand_id']) {
+                    $selected = 'selected';
+                }
+                ?>
+                <option value="<?php echo $brand['id'] ?>" <?php echo $selected; ?>>
+                    <?php echo $brand['name'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
     <div class="form-group">
         <label for="title">Nhập tên sản phẩm</label>
         <input type="text" name="title" value="<?php echo isset($_POST['title']) ? $_POST['title'] : '' ?>"
@@ -28,9 +46,9 @@
     </div>
 
     <div class="form-group">
-        <label for="img_product_detail">Hình ảnh chi tiết</label>
-        <textarea name="img_product_detail" id="img_product_detail"
-                  class="form-control"><?php echo isset($_POST['content']) ? $_POST['content'] : '' ?></textarea>
+        <label for="avatar_details">Hình ảnh chi tiết</label>
+        <input type="file" name="avatar_details[]" multiple value="" class="form-control" id="avatar_details"/>
+        <img src="#" id="img-preview" style="display: none" width="100" height="100" />
     </div>
 
     <div class="form-group">
@@ -38,16 +56,33 @@
         <input type="number" name="price" value="<?php echo isset($_POST['price']) ? $_POST['price'] : '' ?>"
                class="form-control" id="price"/>
     </div>
-    <div class="form-group">
-        <label for="amount">Số lượng</label>
-        <input type="number" name="amount" value="<?php echo isset($_POST['amount']) ? $_POST['amount'] : '' ?>"
-               class="form-control" id="amount"/>
+
+    <div class="form-group product-size">
+        <p><input type="checkbox" name="product-size[]" value="36"> 36 </p>
+        <p><input type="checkbox" name="product-size[]" value="36.5"> 36.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="37"> 37 </p>
+        <p><input type="checkbox" name="product-size[]" value="37.5"> 37.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="38"> 38 </p>
+        <p><input type="checkbox" name="product-size[]" value="38.5"> 38.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="39"> 39 </p>
+        <p><input type="checkbox" name="product-size[]" value="39.5"> 39.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="40"> 40 </p>
+        <p><input type="checkbox" name="product-size[]" value="40.5"> 40.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="41"> 41 </p>
+        <p><input type="checkbox" name="product-size[]" value="41.5"> 41.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="42"> 42 </p>
+        <p><input type="checkbox" name="product-size[]" value="42.5"> 42.5 </p>
+        <p><input type="checkbox" name="product-size[]" value="43"> 43 </p>
     </div>
+
+
+
     <div class="form-group">
         <label for="summary">Mô tả ngắn sản phẩm</label>
         <textarea name="summary" id="summary"
                   class="form-control"><?php echo isset($_POST['summary']) ? $_POST['summary'] : '' ?></textarea>
     </div>
+
     <div class="form-group">
         <label for="description">Mô tả chi tiết sản phẩm</label>
         <textarea name="content" id="description"

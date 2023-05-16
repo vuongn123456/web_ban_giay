@@ -1,15 +1,16 @@
 <?php
-require_once 'models/Model.php';
+
+    require_once 'models/Model.php';
 
 class Product extends Model
 {
 
     public $id;
     public $category_id;
+    public $brand_id;
     public $title;
     public $avatar;
     public $price;
-    public $amount;
     public $summary;
     public $content;
     public $seo_title;
@@ -98,14 +99,14 @@ class Product extends Model
     public function insert()
     {
         $obj_insert = $this->connection
-            ->prepare("INSERT INTO products(category_id, title, avatar, price, amount, summary, content, seo_title, seo_description, seo_keywords, status) 
-                                VALUES (:category_id, :title, :avatar, :price, :amount, :summary, :content, :seo_title, :seo_description, :seo_keywords, :status)");
+            ->prepare("INSERT INTO products(category_id, brand_id, title, avatar, price, summary, content, status, seo_title, seo_description, seo_keywords) 
+                                VALUES (:category_id, :brand_id, :title, :avatar, :price, :summary, :content, :status, :seo_title, :seo_description, :seo_keywords);");
         $arr_insert = [
             ':category_id' => $this->category_id,
+            ':brand_id' => $this->brand_id,
             ':title' => $this->title,
             ':avatar' => $this->avatar,
             ':price' => $this->price,
-            ':amount' => $this->amount,
             ':summary' => $this->summary,
             ':content' => $this->content,
             ':seo_title' => $this->seo_title,
@@ -129,6 +130,38 @@ class Product extends Model
 
         $obj_select->execute();
         return $obj_select->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getIdProduct()
+    {
+        $obj_select = $this->connection
+            ->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 1;");
+
+        $obj_select->execute();
+        return $obj_select->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function insert_image_details($product,$image)
+    {
+        $obj_insert = $this->connection
+            ->prepare("INSERT INTO image_details (`product_id`, `image`) VALUES ('$product' , '$image');");
+        $arr_insert = [
+            ':product_id' => $product,
+            ':image' => $image,
+        ];
+        return $obj_insert->execute($arr_insert);
+    }
+
+    public function insert_size_details($product,$size_name)
+    {
+        $obj_insert = $this->connection
+            ->prepare("INSERT INTO product_size (`product_id`, `size_name`) VALUES ('$product' , '$size_name');");
+        $arr_insert = [
+            ':product_id' => $product,
+            ':size_name' => $size_name,
+        ];
+        return $obj_insert->execute($arr_insert);
     }
 
 

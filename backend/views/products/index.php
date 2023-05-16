@@ -13,11 +13,14 @@ require_once 'helpers/Helper.php';
         <tr>
             <th>ID</th>
             <th>Tên danh mục</th>
+            <th>Tên thương hiệu</th>
             <th>Tên sản phẩm</th>
             <th>Hình ảnh</th>
-            <th>Hình ảnh chi tiết</th>
             <th>Giá</th>
             <th>Size</th>
+            <th>Số lượng</th>
+            <th>Mô tả ngắn sản phẩm</th>
+            <th>Mô tả chi tiết sản phầm</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
