@@ -3,20 +3,20 @@
     <div class="form-group">
         <label for="category_id">Chọn danh mục</label>
         <select name="category_id" class="form-control" id="category_id">
-          <?php
-          foreach ($categories as $category):
-            $selected = '';
-            if ($category['id'] == $product['category_id']) {
-              $selected = 'selected';
-            }
-            if (isset($_POST['category_id']) && $category['id'] == $_POST['category_id']) {
-              $selected = 'selected';
-            }
-            ?>
-              <option value="<?php echo $category['id'] ?>" <?php echo $selected; ?>>
-                <?php echo $category['name'] ?>
-              </option>
-          <?php endforeach; ?>
+            <?php
+            foreach ($categories as $category):
+                $selected = '';
+                if ($category['id'] == $product['category_id']) {
+                    $selected = 'selected';
+                }
+                if (isset($_POST['category_id']) && $category['id'] == $_POST['category_id']) {
+                    $selected = 'selected';
+                }
+                ?>
+                <option value="<?php echo $category['id'] ?>" <?php echo $selected; ?>>
+                    <?php echo $category['name'] ?>
+                </option>
+            <?php endforeach; ?>
         </select>
     </div>
     <div class="form-group">
@@ -29,9 +29,9 @@
         <label for="avatar">Ảnh đại diện</label>
         <input type="file" name="avatar" value="" class="form-control" id="avatar"/>
         <img src="#" id="img-preview" style="display: none" width="100" height="100"/>
-      <?php if (!empty($product['avatar'])): ?>
-          <img height="80" src="assets/uploads/<?php echo $product['avatar'] ?>"/>
-      <?php endif; ?>
+        <?php if (!empty($product['avatar'])): ?>
+            <img height="80" src="assets/uploads/<?php echo $product['avatar'] ?>"/>
+        <?php endif; ?>
     </div>
     <div class="form-group">
         <label for="price">Giá</label>
@@ -76,25 +76,25 @@
     <div class="form-group">
         <label for="status">Trạng thái</label>
         <select name="status" class="form-control" id="status">
-          <?php
-          $selected_disabled = '';
-          $selected_active = '';
-          if ($product['status'] == 0) {
-            $selected_disabled = 'selected';
-          } else {
-            $selected_active = 'selected';
-          }
-          if (isset($_POST['status'])) {
-            switch ($_POST['status']) {
-              case 0:
+            <?php
+            $selected_disabled = '';
+            $selected_active = '';
+            if ($product['status'] == 0) {
                 $selected_disabled = 'selected';
-                break;
-              case 1:
+            } else {
                 $selected_active = 'selected';
-                break;
             }
-          }
-          ?>
+            if (isset($_POST['status'])) {
+                switch ($_POST['status']) {
+                    case 0:
+                        $selected_disabled = 'selected';
+                        break;
+                    case 1:
+                        $selected_active = 'selected';
+                        break;
+                }
+            }
+            ?>
             <option value="0" <?php echo $selected_disabled; ?>>Disabled</option>
             <option value="1" <?php echo $selected_active ?>>Active</option>
         </select>

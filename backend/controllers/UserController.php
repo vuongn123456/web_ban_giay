@@ -1,8 +1,9 @@
 <?php
 //backend/controllers/UserController.php
-require_once 'controllers/Controller.php';
-require_once 'models/User.php';
-class UserController extends Controller {
+    require_once 'controllers/Controller.php';
+    require_once 'models/User.php';
+
+    class UserController extends Controller {
 	// index.php?controller=user&action=register
     public function register() {
         // + NẾu submit form thì mới xử lý
@@ -113,10 +114,14 @@ class UserController extends Controller {
     // Xử lý đăng xuất user
     public function logout() {
         // Xóa các session liên quan đến user, chuyển hướng về trang login
-        unset($_SESSION['user']);
+        $_SESSION = [];
+        session_destroy();
+//        unset($_SESSION['user']);
         $_SESSION['success'] = 'Đăng xuất thành công';
         header('Location: index.php?controller=user&action=login');
         exit();
     }
+
+
 
 }

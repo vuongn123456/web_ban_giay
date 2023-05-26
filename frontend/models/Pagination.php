@@ -180,4 +180,5 @@ class Pagination
     $data .= "</ul>";
     return $data;
   }
+
 }

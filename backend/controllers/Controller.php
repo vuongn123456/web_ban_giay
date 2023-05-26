@@ -1,7 +1,16 @@
 <?php
 
-class Controller
-{
+    class Controller {
+
+        public function __construct()
+        {
+//            if (!isset($_SESSION['user'])) {
+//                $_SESSION['error'] = 'Bạn cần đăng nhập';
+//                header('Location: index.php?controller=user&action=login');
+//                exit();
+//            }
+        }
+
     //chứa nội dung view
     public $content;
     //chứa nội dung lỗi validate

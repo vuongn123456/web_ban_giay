@@ -99,14 +99,14 @@ class Product extends Model
     public function insert()
     {
         $obj_insert = $this->connection
-            ->prepare("INSERT INTO products(category_id, brand_id, title, avatar, price, summary, content, status, seo_title, seo_description, seo_keywords) 
-                                VALUES (:category_id, :brand_id, :title, :avatar, :price, :summary, :content, :status, :seo_title, :seo_description, :seo_keywords);");
+            ->prepare("INSERT INTO products(category_id, title, avatar, price, amount, summary, content, seo_title, seo_description, seo_keywords, status) 
+                                VALUES (:category_id, :title, :avatar, :price, :amount, :summary, :content, :seo_title, :seo_description, :seo_keywords, :status)");
         $arr_insert = [
             ':category_id' => $this->category_id,
-            ':brand_id' => $this->brand_id,
             ':title' => $this->title,
             ':avatar' => $this->avatar,
             ':price' => $this->price,
+            ':amount' => $this->amount,
             ':summary' => $this->summary,
             ':content' => $this->content,
             ':seo_title' => $this->seo_title,
@@ -125,8 +125,14 @@ class Product extends Model
     public function getById($id)
     {
         $obj_select = $this->connection
-            ->prepare("SELECT products.*, categories.name AS category_name FROM products 
-          INNER JOIN categories ON products.category_id = categories.id WHERE products.id = $id");
+            ->prepare("SELECT
+    products.*,
+    categories.name AS category_name
+FROM
+    products
+JOIN categories ON products.category_id = categories.id
+WHERE
+    products.id = $id");
 
         $obj_select->execute();
         return $obj_select->fetch(PDO::FETCH_ASSOC);

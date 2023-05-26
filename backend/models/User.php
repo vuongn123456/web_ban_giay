@@ -33,4 +33,25 @@ class User extends Model {
         $is_register = $obj_insert->execute($inserts);
         return $is_register;
     }
+
+    public function insert(){
+        $obj_insert = $this->connection
+            ->prepare("INSERT INTO users(username, password, first_name, last_name, phone, address, email, avatar, jobs, facebook, status)
+VALUES(:username, :password, :first_name, :last_name, :phone, :address, :email, :avatar, :jobs, :facebook, :status)");
+        $arr_insert = [
+            ':username' => $this->username,
+            ':password' => $this->password,
+            ':first_name' => $this->first_name,
+            ':last_name' => $this->last_name,
+            ':phone' => $this->phone,
+            ':address' => $this->address,
+            ':email' => $this->email,
+            ':avatar' => $this->avatar,
+            ':jobs' => $this->jobs,
+            ':facebook' => $this->facebook,
+            ':status' => $this->status,
+        ];
+        return $obj_insert->execute($arr_insert);
+    }
+
 }

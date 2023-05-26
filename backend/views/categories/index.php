@@ -4,7 +4,7 @@
 </a>
 <br/>
 <br/>
-    <table class="tablee table-bordered table-responsivez " >
+    <table class="tablee table-bordered table-responsive " >
         <thead>
         <tr>
             <th>ID</th>

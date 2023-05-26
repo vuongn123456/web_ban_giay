@@ -3,94 +3,75 @@
     require_once 'controllers/Controller.php';
     require_once 'models/Product.php';
     require_once 'models/Category.php';
-    require_once 'models/Brand.php';
     require_once 'models/Pagination.php';
 
     class ProductController extends Controller {
+
           public function index()
           {
             $product_model = new Product();
             $products = $product_model->getAll();
 
-            //lấy danh sách category đang có trên hệ thống để phục vụ cho search
-            $category_model = new Category();
-            $categories = $category_model->getAll();
-
             $this->content = $this->render('views/products/index.php', [
                 'products' => $products,
-                'categories' => $categories,
             ]);
             require_once 'views/layouts/main.php';
           }
 
-          public function create(){
+        public function create()
+        {
             //xử lý submit form
             if (isset($_POST['submit'])) {
-              $category_id = $_POST['category_id'];
-              $brand_id = $_POST['brand_id'];
-              $title = $_POST['title'];
-              $price = $_POST['price'];
-              $summary = $_POST['summary'];
-              $content = $_POST['content'];
-              $seo_title = $_POST['seo_title'];
-              $seo_description = $_POST['seo_description'];
-              $seo_keywords = $_POST['seo_keywords'];
-              $status = $_POST['status'];
-              $avatar_file = $_FILES['avatar'];
-              $avatar_files = $_FILES['avatar_details'];
-              $size = $_POST['product-size'];
-              echo "<pre>";
-              print_r($size);
-              echo "</pre>";
-
+                $category_id = $_POST['category_id'];
+                $title = $_POST['title'];
+                $price = $_POST['price'];
+                $amount = $_POST['amount'];
+                $summary = $_POST['summary'];
+                $content = $_POST['content'];
+                $seo_title = $_POST['seo_title'];
+                $seo_description = $_POST['seo_description'];
+                $seo_keywords = $_POST['seo_keywords'];
+                $status = $_POST['status'];
                 //xử lý validate
-                if(empty($title)){
-                    $this->error = "Cần nhập tên sản phẩm";
-                }elseif ($avatar_file['error'] == 0){
-                    $extension_arr = ['jpg', 'jpeg', 'gif', 'png'];
-                    $extension = pathinfo($avatar_file['name'], PATHINFO_EXTENSION);
+                if (empty($title)) {
+                    $this->error = 'Không được để trống title';
+                } else if ($_FILES['avatar']['error'] == 0) {
+                    //validate khi có file upload lên thì bắt buộc phải là ảnh và dung lượng không quá 2 Mb
+                    $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
                     $extension = strtolower($extension);
-                    $file_size_mb = $avatar_file['size'] / 1024 / 1024;
+                    $arr_extension = ['jpg', 'jpeg', 'png', 'gif'];
+
+                    $file_size_mb = $_FILES['avatar']['size'] / 1024 / 1024;
                     //làm tròn theo đơn vị thập phân
                     $file_size_mb = round($file_size_mb, 2);
 
-
-
-                    if (!in_array($extension, $extension_arr)) {
+                    if (!in_array($extension, $arr_extension)) {
                         $this->error = 'Cần upload file định dạng ảnh';
-                    } else if ($file_size_mb >= 2) {
-                        $this->error = 'File upload không được lớn hơn 2Mb';
+                    } else if ($file_size_mb > 2) {
+                        $this->error = 'File upload không được quá 2MB';
                     }
-
                 }
 
-                //nếu ko có lỗi thì tiến hành lưu dữ liệu và upload ảnh nếu có
-                if(empty($this->error)){
-                    $file_name = '';
+                //nếu ko có lỗi thì tiến hành save dữ liệu
+                if (empty($this->error)) {
+                    $filename = '';
                     //xử lý upload file nếu có
-                    if($avatar_file['error'] == 0){
-
+                    if ($_FILES['avatar']['error'] == 0) {
                         $dir_uploads = 'assets/uploads';
-
                         if (!file_exists($dir_uploads)) {
                             mkdir($dir_uploads);
                         }
-
-                        $file_name = time() . '-product-' . $avatar_file['name'];
-                        move_uploaded_file($avatar_file['tmp_name'], $dir_uploads . '/' . $file_name);
-
+                        //tạo tên file theo 1 chuỗi ngẫu nhiên để tránh upload file trùng lặp
+                        $filename = time() . '-product-' . $_FILES['avatar']['name'];
+                        move_uploaded_file($_FILES['avatar']['tmp_name'], $dir_uploads . '/' . $filename);
                     }
-
-
-
-
                     //save dữ liệu vào bảng products
                     $product_model = new Product();
                     $product_model->category_id = $category_id;
-                    $product_model->brand_id = $brand_id;
                     $product_model->title = $title;
-                    $product_model->avatar = $file_name;
+                    $product_model->avatar = $filename;
                     $product_model->price = $price;
+                    $product_model->amount = $amount;
                     $product_model->summary = $summary;
                     $product_model->content = $content;
                     $product_model->seo_title = $seo_title;
@@ -98,55 +79,11 @@
                     $product_model->seo_keywords = $seo_keywords;
                     $product_model->status = $status;
                     $is_insert = $product_model->insert();
-                    $get_product = $product_model ->getIdProduct();
-                    $product_id = $get_product['id'];
-
                     if ($is_insert) {
-
-                         foreach ($avatar_files['name'] as $key => $element){
-                             $avatar = time() . '-product-details' . $element;
-                            move_uploaded_file($avatar_files['tmp_name'][$key], $dir_uploads . '/' . $avatar);
-                            $is_image = $product_model->insert_image_details($product_id,$avatar);
-                         }
-
-
-
-
-
-                        foreach ($size as $key => $element){
-                            $is_size = $product_model->insert_size_details($product_id,$element);
-                        }
-
-                        if ($is_size) {
-                            $_SESSION['success'] = 'Insert dữ liệu thành công';
-                        } else {
-                            $_SESSION['error'] = 'Insert dữ liệu thất bại';
-                        }
-
-
-//                        $dir_uploads = 'assets/uploads';
-//
-//                        if (!file_exists($dir_uploads)) {
-//                            mkdir($dir_uploads);
-//                        }
-//
-//                        $get_product = $product_model ->getIdProduct();
-//                        $product_id = $get_product['id'];
-//
-//                        foreach ($avatar_files['name'] as $key => $element){
-//
-//                                move_uploaded_file($avatar_files['tmp_name'][$key], $dir_uploads . '/' .  time() . '-product-details-'. $element);
-//                                $is_image = $product_model->insert_image_details($product_id,$element);
-//                            }
-//
-//                        if ($is_image) {
-//                                $_SESSION['success'] = 'Insert dữ liệu thành công';
-//                            } else {
-//                                $_SESSION['error'] = 'Insert dữ liệu thất bại';
-//                            }
-
+                        $_SESSION['success'] = 'Insert dữ liệu thành công';
+                    } else {
+                        $_SESSION['error'] = 'Insert dữ liệu thất bại';
                     }
-
                     header('Location: index.php?controller=product');
                     exit();
                 }
@@ -156,16 +93,11 @@
             $category_model = new Category();
             $categories = $category_model->getAll();
 
-            $brand_model = new Brand();
-            $brands = $brand_model->getAll();
-
-
             $this->content = $this->render('views/products/create.php', [
-                'categories' => $categories,
-                'brands' => $brands,
+                'categories' => $categories
             ]);
             require_once 'views/layouts/main.php';
-          }
+        }
 
           public function detail()
           {
@@ -185,12 +117,12 @@
             require_once 'views/layouts/main.php';
           }
 
-          public function update()
-          {
+        public function update()
+        {
             if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-              $_SESSION['error'] = 'ID không hợp lệ';
-              header('Location: index.php?controller=product');
-              exit();
+                $_SESSION['error'] = 'ID không hợp lệ';
+                header('Location: index.php?controller=product');
+                exit();
             }
 
             $id = $_GET['id'];
@@ -198,74 +130,74 @@
             $product = $product_model->getById($id);
             //xử lý submit form
             if (isset($_POST['submit'])) {
-              $category_id = $_POST['category_id'];
-              $title = $_POST['title'];
-              $price = $_POST['price'];
-              $amount = $_POST['amount'];
-              $summary = $_POST['summary'];
-              $content = $_POST['content'];
-              $seo_title = $_POST['seo_title'];
-              $seo_description= $_POST['seo_description'];
-              $seo_keywords = $_POST['seo_keywords'];
-              $status = $_POST['status'];
-              //xử lý validate
-              if (empty($title)) {
-                $this->error = 'Không được để trống title';
-              } else if ($_FILES['avatar']['error'] == 0) {
-                //validate khi có file upload lên thì bắt buộc phải là ảnh và dung lượng không quá 2 Mb
-                $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                $extension = strtolower($extension);
-                $arr_extension = ['jpg', 'jpeg', 'png', 'gif'];
+                $category_id = $_POST['category_id'];
+                $title = $_POST['title'];
+                $price = $_POST['price'];
+                $amount = $_POST['amount'];
+                $summary = $_POST['summary'];
+                $content = $_POST['content'];
+                $seo_title = $_POST['seo_title'];
+                $seo_description= $_POST['seo_description'];
+                $seo_keywords = $_POST['seo_keywords'];
+                $status = $_POST['status'];
+                //xử lý validate
+                if (empty($title)) {
+                    $this->error = 'Không được để trống title';
+                } else if ($_FILES['avatar']['error'] == 0) {
+                    //validate khi có file upload lên thì bắt buộc phải là ảnh và dung lượng không quá 2 Mb
+                    $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                    $extension = strtolower($extension);
+                    $arr_extension = ['jpg', 'jpeg', 'png', 'gif'];
 
-                $file_size_mb = $_FILES['avatar']['size'] / 1024 / 1024;
-                //làm tròn theo đơn vị thập phân
-                $file_size_mb = round($file_size_mb, 2);
+                    $file_size_mb = $_FILES['avatar']['size'] / 1024 / 1024;
+                    //làm tròn theo đơn vị thập phân
+                    $file_size_mb = round($file_size_mb, 2);
 
-                if (!in_array($extension, $arr_extension)) {
-                  $this->error = 'Cần upload file định dạng ảnh';
-                } else if ($file_size_mb > 2) {
-                  $this->error = 'File upload không được quá 2MB';
+                    if (!in_array($extension, $arr_extension)) {
+                        $this->error = 'Cần upload file định dạng ảnh';
+                    } else if ($file_size_mb > 2) {
+                        $this->error = 'File upload không được quá 2MB';
+                    }
                 }
-              }
 
-              //nếu ko có lỗi thì tiến hành save dữ liệu
-              if (empty($this->error)) {
-                $filename = $product['avatar'];
-                //xử lý upload file nếu có
-                if ($_FILES['avatar']['error'] == 0) {
-                  $dir_uploads = 'assets/uploads';
-                  //xóa file cũ, thêm @ vào trước hàm unlink để tránh báo lỗi khi xóa file ko tồn tại
-                  @unlink($dir_uploads . '/' . $filename);
-                  if (!file_exists($dir_uploads)) {
-                    mkdir($dir_uploads);
-                  }
-                  //tạo tên file theo 1 chuỗi ngẫu nhiên để tránh upload file trùng lặp
-                  $filename = time() . '-product-' . $_FILES['avatar']['name'];
-                  move_uploaded_file($_FILES['avatar']['tmp_name'], $dir_uploads . '/' . $filename);
-                }
-                //save dữ liệu vào bảng products
-                $product_model->category_id = $category_id;
-                $product_model->title = $title;
-                $product_model->avatar = $filename;
-                $product_model->price = $price;
-                $product_model->amount = $amount;
-                $product_model->summary = $summary;
-                $product_model->content = $content;
-                $product_model->seo_title = $seo_title;
-                $product_model->seo_description = $seo_description;
-                $product_model->seo_keywords = $seo_keywords;
-                $product_model->status = $status;
-                $product_model->updated_at = date('Y-m-d H:i:s');
+                //nếu ko có lỗi thì tiến hành save dữ liệu
+                if (empty($this->error)) {
+                    $filename = $product['avatar'];
+                    //xử lý upload file nếu có
+                    if ($_FILES['avatar']['error'] == 0) {
+                        $dir_uploads = 'assets/uploads';
+                        //xóa file cũ, thêm @ vào trước hàm unlink để tránh báo lỗi khi xóa file ko tồn tại
+                        @unlink($dir_uploads . '/' . $filename);
+                        if (!file_exists($dir_uploads)) {
+                            mkdir($dir_uploads);
+                        }
+                        //tạo tên file theo 1 chuỗi ngẫu nhiên để tránh upload file trùng lặp
+                        $filename = time() . '-product-' . $_FILES['avatar']['name'];
+                        move_uploaded_file($_FILES['avatar']['tmp_name'], $dir_uploads . '/' . $filename);
+                    }
+                    //save dữ liệu vào bảng products
+                    $product_model->category_id = $category_id;
+                    $product_model->title = $title;
+                    $product_model->avatar = $filename;
+                    $product_model->price = $price;
+                    $product_model->amount = $amount;
+                    $product_model->summary = $summary;
+                    $product_model->content = $content;
+                    $product_model->seo_title = $seo_title;
+                    $product_model->seo_description = $seo_description;
+                    $product_model->seo_keywords = $seo_keywords;
+                    $product_model->status = $status;
+                    $product_model->updated_at = date('Y-m-d H:i:s');
 
-                $is_update = $product_model->update($id);
-                if ($is_update) {
-                  $_SESSION['success'] = 'Update dữ liệu thành công';
-                } else {
-                  $_SESSION['error'] = 'Update dữ liệu thất bại';
+                    $is_update = $product_model->update($id);
+                    if ($is_update) {
+                        $_SESSION['success'] = 'Update dữ liệu thành công';
+                    } else {
+                        $_SESSION['error'] = 'Update dữ liệu thất bại';
+                    }
+                    header('Location: index.php?controller=product');
+                    exit();
                 }
-                header('Location: index.php?controller=product');
-                exit();
-              }
             }
 
             //lấy danh sách category đang có trên hệ thống để phục vụ cho search
@@ -277,7 +209,7 @@
                 'product' => $product,
             ]);
             require_once 'views/layouts/main.php';
-          }
+        }
 
           public function delete()
           {
