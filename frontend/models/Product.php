@@ -1,9 +1,19 @@
 <?php
-require_once 'models/Model.php';
+
+    require_once 'models/Model.php';
+
+
+
 class Product extends Model {
+
+    public $page;
 
     public function getProductInHomePage($params = []) {
         $str_filter = '';
+        $row = 9;
+        $from = ($this->page - 1 ) * $row;
+
+
         if (isset($params['category'])) {
             $str_category = $params['category'];
             $str_filter .= " AND categories.id IN $str_category";
@@ -16,13 +26,30 @@ class Product extends Model {
         $sql_select = "SELECT products.*, categories.name 
           AS category_name FROM products
           INNER JOIN categories ON products.category_id = categories.id
-          WHERE products.status = 1 $str_filter LIMIT 9";
+          WHERE products.status = 1 $str_filter ORDER BY
+    products.created_at
+DESC
+LIMIT $from, $row;";
 
         $obj_select = $this->connection->prepare($sql_select);
         $obj_select->execute();
 
         $products = $obj_select->fetchAll(PDO::FETCH_ASSOC);
         return $products;
+    }
+
+
+    public function countTotal()
+    {
+        $obj_select = $this->connection->prepare("SELECT
+    COUNT(id)
+FROM
+    products
+WHERE
+    products.status = 1;");
+        $obj_select->execute();
+
+        return $obj_select->fetchColumn();
     }
 
     /**

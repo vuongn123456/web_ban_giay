@@ -136,11 +136,17 @@ require_once 'helpers/Helper.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="product__pagination">
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <span>...</span>
-                            <a href="#">21</a>
+                            <?php $pages = ceil($count_product / 9) ;
+                                for ($i = 1 ; $i <= $pages ; $i++){
+                            ?>
+                                <a class="<?php if($_GET['pages'] == $i){
+                                    echo 'active';
+                                }else {
+                                    echo '';
+                                } ?>" href="index.php?controller=product&action=showAll&pages=<?php echo $i?>"><?php echo $i?></a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

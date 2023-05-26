@@ -44,20 +44,17 @@
                 }
             }
 
-            $params_pagination = [
-                'total' => 5,
-                'limit' => 1,
-                'query_string' => 'page',
-                'controller' => 'product',
-                'action' => 'showAll',
-                'full_mode' => FALSE,
-            ];
-            //xử lý phân trang
-            $pagination_model = new Pagination($params_pagination);
-            $pagination = $pagination_model->getPagination();
+            if(isset($_GET['pages'])){
+                $page = $_GET['pages'];
+            }else {
+                $page = 1;
+            }
+
 
             //get products
             $product_model = new Product();
+            $product_model->page = $page;
+            $count_product = $product_model->countTotal();
             $products = $product_model->getProductInHomePage($params);
 
             //get categories để filter
@@ -67,7 +64,7 @@
             $this->content = $this->render('views/products/show_all.php', [
                 'products' => $products,
                 'categories' => $categories,
-                'pagination' => $pagination,
+                'count_product' => $count_product,
             ]);
 
             require_once 'views/layouts/main.php';
