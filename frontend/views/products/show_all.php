@@ -110,12 +110,12 @@ require_once 'helpers/Helper.php';
                             ?>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="../backend/assets/uploads/<?php echo $product['avatar'] ?>" style="background-image: url(&quot;img/product/product-3.jpg&quot;);">
+                                        <div class="product__item__pic set-bg" data-setbg="../backend/assets/uploads/<?php echo $product['avatar'] ?>" width="260">
                                             <ul class="product__hover">
                                                 <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
                                                 <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a>
                                                 </li>
-                                                <li><a href="#"><img src="assets/img/icon/search.png" alt=""></a></li>
+                                                <li><a href="index.php?controller=product&action=detail&id=<?= $product['id'] ?>"><img src="assets/img/icon/search.png"><span>Chi tiết</span></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__item__text">

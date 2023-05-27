@@ -70,4 +70,22 @@
             require_once 'views/layouts/main.php';
         }
 
+        public function detail() {
+            if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+                $_SESSION['error'] = 'ID ko hợp lệ';
+                header("Location: index.php?controller=product&action=showAll");
+                exit();
+            }
+
+            $id = $_GET['id'];
+            $product_model = new Product();
+            $product = $product_model->getById($id);
+
+
+            $this->content = $this->render('views/products/detail.php', [
+                'product' => $product
+            ]);
+            require_once 'views/layouts/main.php';
+        }
+
     }
