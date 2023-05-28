@@ -29,7 +29,7 @@
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li class=""><a href="index.php">Trang chủ</a></li>
-                        <li><a href="index.php?controller=product&action=showAll">Sản phẩm</a></li>
+                        <li><a href="index.php?controller=product&action=showAll&page=1">Sản phẩm</a></li>
                         <li><a href="./blog.html">Tin tức</a></li>
                         <li><a href="./contact.html">Liên hệ</a></li>
                     </ul>

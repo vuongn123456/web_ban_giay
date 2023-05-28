@@ -139,11 +139,11 @@ require_once 'helpers/Helper.php';
                             <?php $pages = ceil($count_product / 9) ;
                                 for ($i = 1 ; $i <= $pages ; $i++){
                             ?>
-                                <a class="<?php if($_GET['pages'] == $i){
+                                <a class="<?php if($_GET['page'] == $i){
                                     echo 'active';
                                 }else {
                                     echo '';
-                                } ?>" href="index.php?controller=product&action=showAll&pages=<?php echo $i?>"><?php echo $i?></a>
+                                } ?>" href="index.php?controller=product&action=showAll&page=<?php echo $i?>"><?php echo $i?></a>
                             <?php
                             }
                             ?>

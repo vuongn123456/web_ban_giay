@@ -4,14 +4,14 @@
 
 
 
-class Product extends Model {
+ class Product extends Model {
 
     public $page;
 
     public function getProductInHomePage($params = []) {
         $str_filter = '';
         $row = 9;
-        $from = ($this->page - 1 ) * $row;
+        $from = ($params['page'] - 1 ) * $row;
 
 
         if (isset($params['category'])) {
@@ -37,6 +37,18 @@ LIMIT $from, $row;";
         $products = $obj_select->fetchAll(PDO::FETCH_ASSOC);
         return $products;
     }
+
+     public function getProduct() {
+
+         //do cả 2 bảng products và categories đều có trường name, nên cần phải thay đổi lại tên cột cho 1 trong 2 bảng
+         $sql_select = "SELECT * FROM `products` LIMIT 5 ";
+
+         $obj_select = $this->connection->prepare($sql_select);
+         $obj_select->execute();
+
+         $products = $obj_select->fetchAll(PDO::FETCH_ASSOC);
+         return $products;
+     }
 
 
     public function countTotal()

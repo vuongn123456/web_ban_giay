@@ -44,18 +44,18 @@
                 }
             }
 
-            if(isset($_GET['pages'])){
-                $page = $_GET['pages'];
+            if(isset($_GET['page'])){
+                $params['page'] = $_GET['page'];
             }else {
-                $page = 1;
+                $params['page'] = 1;
             }
 
 
             //get products
             $product_model = new Product();
-            $product_model->page = $page;
             $count_product = $product_model->countTotal();
             $products = $product_model->getProductInHomePage($params);
+
 
             //get categories để filter
             $category_model = new Category();

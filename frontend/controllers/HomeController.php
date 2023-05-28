@@ -7,7 +7,9 @@
 
       public function index() {
         $product_model = new Product();
-        $products = $product_model->getProductInHomePage();
+        $products = $product_model->getProduct();
+
+
 
         $this->content = $this->render('views/homes/index.php', [
           'products' => $products
