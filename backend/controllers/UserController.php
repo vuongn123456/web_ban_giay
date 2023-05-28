@@ -3,9 +3,34 @@
     require_once 'controllers/Controller.php';
     require_once 'models/User.php';
 
-    class UserController extends Controller {
-	// index.php?controller=user&action=register
-    public function register() {
+    class UserController {
+
+        public $content;
+        //chứa nội dung lỗi validate
+        public $error;
+
+        /**
+         * @param $file string Đường dẫn tới file
+         * @param array $variables array Danh sách các biến truyền vào file
+         * @return false|string
+         */
+        public function render($file, $variables = []) {
+            //Nhập các giá trị của mảng vào các biến có tên tương ứng chính là key của phần tử đó.
+            //khi muốn sử dụng biến từ bên ngoài vào trong hàm
+            extract($variables);
+            //bắt đầu nhớ mọi nội dung kể từ khi khai báo, kiểu như lưu vào bộ nhớ tạm
+            ob_start();
+            //thông thường nếu ko có ob_start thì sẽ hiển thị 1 dòng echo lên màn hình
+            //tuy nhiên do dùng ob_Start nên nội dung của nó đã đc lưu lại, chứ ko hiển thị ra màn hình nữa
+            require_once $file;
+            //lấy dữ liệu từ bộ nhớ tạm đã lưu khi gọi hàm ob_Start để xử lý, lấy xong rồi xóa luôn dữ liệu đó
+            $render_view = ob_get_clean();
+
+            return $render_view;
+        }
+
+
+        public function register() {
         // + NẾu submit form thì mới xử lý
         if (isset($_POST['submit'])) {
             // + Tạo biến trung gian
@@ -64,6 +89,11 @@
 
 	public function login(){
 
+        if (isset($_SESSION['user'])) {
+            header('Location: index.php?controller=category&action=index');
+            exit();
+        }
+
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -78,21 +108,24 @@
                 $user_model = new User();
                 $user = $user_model->getUser($username);
 
+
                 if(empty($user)){
-                    $this->error = "Username không tồn tại";
+                    $this->error = "Tên đăng nhập không tồn tại";
                 }else{
                     $password_encrypt = $user['password'];
                     // + Sử dụng hàm password_verify của PHP để ktra cái password đã mã hóa này từ password nhập từ form
                     // Hàm này sử dụng cho password đc mã hóa bằng hàm password_hash
                     $is_verify_password = password_verify($password,$password_encrypt);
 
-                    if($is_verify_password){
+                    if($is_verify_password && $user['status'] == 1){
                         $_SESSION['user'] = $user;
                         $_SESSION['success'] = 'Đăng nhập thành công';
                         // Chuyển hướng về giao diện admin
                         header('Location: index.php?controller=category&action=index');
                         exit();
-                    }else{
+                    }elseif ($user['status'] !== 1 && $is_verify_password){
+                        $this->error = "Bạn không có quyền quản trị";
+                    } else{
                         $this->error = 'Sai tài khoản hoặc mật khẩu';
                     }
                 }

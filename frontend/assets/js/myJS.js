@@ -13,7 +13,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $('.ajax-message')
-                    .html('Thêm sp vào giỏ thành công')
+                    .html('Thêm sản phẩm vào giỏ thành công')
                     .addClass('ajax-message-active');
                 // Sau 3s thì tự động ẩn thông báo
                 setTimeout(function() {

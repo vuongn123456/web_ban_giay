@@ -2,14 +2,14 @@
 
     class Controller {
 
-        public function __construct()
-        {
-//            if (!isset($_SESSION['user'])) {
-//                $_SESSION['error'] = 'Bạn cần đăng nhập';
-//                header('Location: index.php?controller=user&action=login');
-//                exit();
-//            }
+        public function __construct() {
+            if (!isset($_SESSION['user'])){
+                $_SESSION['error'] = 'Bạn cần đăng nhập';
+                header('Location: index.php?controller=user&action=login');
+                exit();
+            }
         }
+
 
     //chứa nội dung view
     public $content;
@@ -17,6 +17,8 @@
     public $error;
     // Tiêu đề trang
     public $page_title;
+
+
 
     /**
      * @param $file string Đường dẫn tới file

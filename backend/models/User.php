@@ -1,6 +1,7 @@
 <?php
 //models/User.php
-require_once 'models/Model.php';
+    require_once 'models/Model.php';
+
 class User extends Model {
 
     public function getUser($username) {

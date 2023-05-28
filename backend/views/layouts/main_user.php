@@ -1,4 +1,3 @@
-<!--Copy main.php -> main_user.php, giữ lại toàn bộ css, js-->
 <!DOCTYPE html>
 <html>
 <head>
