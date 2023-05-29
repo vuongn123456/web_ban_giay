@@ -151,9 +151,20 @@
         session_destroy();
 //        unset($_SESSION['user']);
         $_SESSION['success'] = 'Đăng xuất thành công';
-        header('Location: index.php?controller=user&action=login');
+        header('Location: /web_ban_giay/frontend');
         exit();
     }
+
+        public function index() {
+            $user_model = new User();
+            $users = $user_model->getAll();
+
+            $this->content = $this->render('views/users/index.php', [
+                'users' => $users
+            ]);
+
+            require_once 'views/layouts/main.php';
+        }
 
 
 

@@ -29,11 +29,7 @@ class OrderController extends Controller
         }
         $id = $_GET['id'];
         $order_model = new Order();
-        $orders = $order_model->getById($id);
-
-        echo "<pre>";
-        print_r($orders);
-        echo "</pre>";
+        $orders = $order_model->getOrderById($id);
 
         //lấy nội dung view create.php
         $this->content = $this->render('views/orders/detail.php', [
@@ -42,6 +38,25 @@ class OrderController extends Controller
         //gọi layout để nhúng nội dung view detail vừa lấy đc
         require_once 'views/layouts/main.php';
 
+    }
+
+    public function delete()
+    {
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            $_SESSION['error'] = 'ID không hợp lệ';
+            header('Location: index.php?controller=order&action=index');
+            exit();
+        }
+        $id = $_GET['id'];
+        $order_model = new Order();
+        $is_delete = $order_model->delete($id);
+        if ($is_delete) {
+            $_SESSION['success'] = 'Xóa thành công';
+        } else {
+            $_SESSION['error'] = 'Xóa thất bại';
+        }
+        header('Location: index.php?controller=order&action=index');
+        exit();
     }
 
 }

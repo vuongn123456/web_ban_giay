@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#rewrite login
+RewriteRule login.html index.php?controller=user&action=login
+RewriteRule register.html index.php?controller=user&action=register
+

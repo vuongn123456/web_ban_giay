@@ -6,39 +6,37 @@
                     <div class="footer__logo">
                         <a href="#"><img src="img/footer-logo.png" alt=""></a>
                     </div>
-                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <p>Khách hàng là trung tâm của mô hình kinh doanh độc đáo của chúng tôi.</p>
                     <a href="#"><img src="img/payment.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>Shopping</h6>
+                    <h6>Kết nối với chúng tôi</h6>
                     <ul>
-                        <li><a href="#">Clothing Store</a></li>
-                        <li><a href="#">Trending Shoes</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Sale</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>Shopping</h6>
+                    <h6>Liên hệ</h6>
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Payment Methods</a></li>
-                        <li><a href="#">Delivary</a></li>
-                        <li><a href="#">Return &amp; Exchanges</a></li>
+                        <li><a href="#">Địa chỉ: Hà Nội</a></li>
+                        <li><a href="#">Hotline: 0983 151 780</a></li>
+                        <li><a href="#">Email:vuongn123456@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6>NewLetter</h6>
+                    <h6>HỖ TRỢ</h6>
                     <div class="footer__newslatter">
-                        <p>Be the first to know about new arrivals, look books, sales &amp; promos!</p>
+                        <p>Tư vấn 24/7, hiện tại cửa hàng đang sửa chữa mặt bằng nên chỉ bán online</p>
                         <form action="#">
-                            <input type="text" placeholder="Your email">
+                            <input type="text" placeholder="Email của bạn">
                             <button type="submit"><span class="icon_mail_alt"></span></button>
                         </form>
                     </div>

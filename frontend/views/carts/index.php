@@ -16,10 +16,10 @@
         <div class="row">
             <div class="col-lg-8">
                 <?php if (isset($_SESSION['cart'])) : ?>
-                <div class="shopping__cart__table">
-                    <form action="" method="post">
-                        <table>
-                            <thead>
+                    <div class="shopping__cart__table">
+                        <form action="" method="post">
+                            <table>
+                                <thead>
 
                                 <tr>
                                     <th width="40%">Sản phẩm</th>
@@ -29,63 +29,63 @@
                                     <th></th>
                                 </tr>
 
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
 
                                 <?php
                                 $total_price = 0;
                                 foreach ($_SESSION['cart'] AS $product_id => $product):
-                                ?>
+                                    ?>
 
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="../backend/assets/uploads/<?php echo $product['avatar'] ?>" alt="" width="80">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6><?php echo $product['name'] ?></h6>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <!--                      cần khéo léo đặt name cho input số lượng, để khi xử lý submit form update lại giỏ hànTin nổi bậtg sẽ đơn giản hơn    -->
-                                        <input type="number" min="0" name="<?php echo $product_id?>" class="product-amount form-control"
-                                               value="<?php echo $product['quantity'] ?>">
-                                    </td>
-                                    <td class="cart__price" style="text-align: center"><?php echo number_format($product['price']); ?><sup>đ</sup></td>
-                                    <td class="cart__price">
-                                        <?php
-                                        $product_price = $product['price'] * $product['quantity'];
-                                        $total_price += $product_price;
-                                        echo number_format($product_price);
-                                        ?>
-                                        <sup>đ</sup>
-                                    </td>
-                                    <td class="cart__close close__hover">
-                                        <a href="index.php?controller=cart&action=delete&id=<?php echo $product_id; ?>">
-                                            <i class="fa fa-close"></i>
-                                        </a>
-                                    </td>
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="../backend/assets/uploads/<?php echo $product['avatar'] ?>" alt="" width="80">
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6><?php echo $product['name'] ?></h6>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <!--                      cần khéo léo đặt name cho input số lượng, để khi xử lý submit form update lại giỏ hànTin nổi bậtg sẽ đơn giản hơn    -->
+                                            <input type="number" min="0" name="<?php echo $product_id?>" class="product-amount form-control"
+                                                   value="<?php echo $product['quantity'] ?>">
+                                        </td>
+                                        <td class="cart__price" style="text-align: center"><?php echo number_format($product['price']); ?><sup>đ</sup></td>
+                                        <td class="cart__price">
+                                            <?php
+                                            $product_price = $product['price'] * $product['quantity'];
+                                            $total_price += $product_price;
+                                            echo number_format($product_price);
+                                            ?>
+                                            <sup>đ</sup>
+                                        </td>
+                                        <td class="cart__close close__hover">
+                                            <a href="index.php?controller=cart&action=delete&id=<?php echo $product_id; ?>">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </td>
 
 
-                                </tr>
+                                    </tr>
                                 <?php endforeach; ?>
 
-                            </tbody>
-                        </table>
-                        <div class="row mt-5">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="continue__btn">
-                                    <a href="index.php?controller=payment&action=index">Đến trang thanh toán</a>
+                                </tbody>
+                            </table>
+                            <div class="row mt-5">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="continue__btn">
+                                        <a href="index.php?controller=payment&action=index">Đến trang thanh toán</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="continue__btn update__btn">
+                                        <input type="submit" name="submit" value="Cập nhật giá" class="btn btn-dark">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="continue__btn update__btn">
-                                    <input type="submit" name="submit" value="Cập nhật giá" class="btn btn-dark">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
                 <?php else: ?>
                     <h3>Giỏ hàng trống</h3>
                 <?php endif; ?>

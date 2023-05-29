@@ -82,6 +82,7 @@
             $product = $product_model->getById($id);
 
 
+
             $this->content = $this->render('views/products/detail.php', [
                 'product' => $product
             ]);

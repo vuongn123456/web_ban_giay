@@ -81,30 +81,14 @@ WHERE
     }
 
 
-    public function update($id)
-    {
-        $obj_update = $this->connection->prepare("UPDATE categories SET `name` = :name, `avatar` = :avatar, `description` = :description, `status` = :status, `updated_at` = :updated_at 
-         WHERE id = $id");
-        $arr_update = [
-            ':name' => $this->name,
-            ':avatar' => $this->avatar,
-            ':description' => $this->description,
-            ':status' => $this->status,
-            ':updated_at' => $this->updated_at,
-        ];
-
-        return $obj_update->execute($arr_update);
-    }
-
-
     public function delete($id)
     {
         $obj_delete = $this->connection
-            ->prepare("DELETE FROM categories WHERE id = $id");
+            ->prepare("DELETE FROM orders WHERE id = $id");
         $is_delete = $obj_delete->execute();
         //để đảm bảo toàn vẹn dữ liệu, sau khi xóa category thì cần xóa cả các product nào đang thuộc về category này
         $obj_delete_product = $this->connection
-            ->prepare("DELETE FROM products WHERE category_id = $id");
+            ->prepare("DELETE FROM order_details WHERE order_id  = $id");
         $obj_delete_product->execute();
 
         return $is_delete;

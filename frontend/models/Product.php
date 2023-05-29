@@ -38,10 +38,20 @@ LIMIT $from, $row;";
         return $products;
     }
 
-     public function getProduct() {
+     public function getProductNew() {
 
-         //do cả 2 bảng products và categories đều có trường name, nên cần phải thay đổi lại tên cột cho 1 trong 2 bảng
-         $sql_select = "SELECT * FROM `products` LIMIT 5 ";
+         $sql_select = "SELECT
+    *
+FROM
+    `products`
+WHERE
+STATUS
+    = 1
+ORDER BY
+    created_at
+DESC
+LIMIT 4
+    ;";
 
          $obj_select = $this->connection->prepare($sql_select);
          $obj_select->execute();

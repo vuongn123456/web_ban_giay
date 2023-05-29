@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 27, 2023 at 12:04 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 29, 2023 lúc 05:23 AM
+-- Phiên bản máy phục vụ: 10.4.24-MariaDB
+-- Phiên bản PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `do_an`
+-- Cơ sở dữ liệu: `do_an`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
@@ -39,17 +39,19 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `type`, `avatar`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Nike', 0, '1684482715-kisspng-thermometer-temperature-portable-network-graphics-measuring-png-icons-and-graphics-png-repo-free-p-5cb9e41ed33a89.9039044915556864308652.jpg', '', 1, '2023-05-19 07:51:55', NULL),
-(2, 'Reebok', 0, '', '', 1, '2023-05-19 14:29:18', NULL);
+(3, 'Nike', 0, '', '', 1, '2023-05-29 00:09:26', NULL),
+(6, 'Reebok', 0, '', '', 1, '2023-05-29 00:10:03', NULL),
+(7, 'Adidas', 0, '', '', 1, '2023-05-29 00:10:09', NULL),
+(10, 'Converse', 0, '', '', 1, '2023-05-29 00:37:09', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Cấu trúc bảng cho bảng `news`
 --
 
 CREATE TABLE `news` (
@@ -70,7 +72,7 @@ CREATE TABLE `news` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
@@ -88,33 +90,20 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `fullname`, `address`, `mobile`, `email`, `note`, `price_total`, `payment_status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', 'a', 64240000, 0, '2023-05-23 07:04:34', NULL),
-(2, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', 'a', 64240000, 0, '2023-05-23 07:06:14', NULL),
-(3, NULL, 'Nguyenbang vuong', 'Số nhà 118a , Ngõ 254 Minh Khai, Hà Nội', 359102898, 'vuongn6800@gmail.com', 'asdad', 100, 0, '2023-05-23 07:16:05', NULL),
-(4, NULL, 'Nguyenbang vuong', 'Số nhà 118a , Ngõ 254 Minh Khai, Hà Nội', 359102898, 'vuongn6800@gmail.com', 'asdad', 100, 0, '2023-05-23 07:18:10', NULL),
-(5, NULL, 'Nguyenbang vuong', 'Số nhà 118a , Ngõ 254 Minh Khai, Hà Nội', 359102898, 'vuongn6800@gmail.com', '333', 1000100, 0, '2023-05-23 13:56:58', NULL),
-(6, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', '6', 55880000, 0, '2023-05-23 14:00:00', NULL),
-(7, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', 'qqqq', 1000000, 0, '2023-05-23 14:54:20', NULL),
-(8, NULL, 'Linh chi', 'bac giang', 359102898, 'vuongn6800@gmail.com', 'aaaaa', 2337000, 0, '2023-05-23 15:11:24', NULL),
-(9, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn9999@gmail.com', 'a', 2337000, 0, '2023-05-23 15:12:44', NULL),
-(10, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn9999@gmail.com', 'a', 2337000, 0, '2023-05-23 15:25:17', NULL),
-(11, NULL, 'Nguyenbang vuong 1', '119 hoang mai1111', 359102898, 'vuongn123456@gmail.com', 'ok', 2337000, 0, '2023-05-23 16:12:57', NULL),
-(12, NULL, 'Nguyenbang vuong2', '119 hoang mai2', 359102898, 'vuongn6800@gmail.com', 'aaaaa', 3337000, 0, '2023-05-23 16:40:16', NULL),
-(13, NULL, 'Nguyenbang vuong2', '119 hoang mai2', 359102898, 'vuongn6800@gmail.com', 'aaaaa', 3337000, 0, '2023-05-23 16:42:16', NULL),
-(14, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, '', '', 27940000, 0, '2023-05-25 13:24:15', NULL),
-(15, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn9999@gmail.com', 'aaaa', 100000, 0, '2023-05-25 13:26:13', NULL),
-(16, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'linhchi168201@gmail.com', 'aaa', 1000000, 0, '2023-05-25 13:26:54', NULL),
-(17, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', '`111111', 27940100, 0, '2023-05-25 14:02:19', NULL),
-(18, NULL, 'Nguyenbang vuong', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', 'aa', 27940000, 0, '2023-05-27 09:58:54', NULL);
+(22, NULL, 'Nguyễn Bằng Vượng', 'Hoàng Mai, Hà Nội', 359102898, 'vuongn6800@gmail.com', 'Gọi trước khi ship', 7740000, 0, '2023-05-29 00:47:54', NULL),
+(23, NULL, 'Linh Chi', 'Cầy Giấy, Hà Nội', 913090769, 'linhchi168201@gmail.com', 'Ship càng sớm càng tốt', 3940000, 0, '2023-05-29 00:49:12', NULL),
+(24, NULL, 'Nguyen Ha Anh', '119 hoang mai', 359102898, 'vuongn12345@gmail.com', 'q', 5250000, 0, '2023-05-29 02:01:31', NULL),
+(25, NULL, 'Nguyễn Tuấn Tùng', 'Phú Quốc', 65896584, 'tuantung@gmail.com', 'Ship nhanh', 4700000, 0, '2023-05-29 03:09:45', NULL),
+(26, NULL, 'Nguyen bang vuong 1', '119 hoang mai', 359102898, 'vuongn6800@gmail.com', '8888', 3289000, 0, '2023-05-29 03:18:59', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_details`
+-- Cấu trúc bảng cho bảng `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -127,30 +116,24 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order_details`
+-- Đang đổ dữ liệu cho bảng `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `product_name`, `product_price`, `quantity`) VALUES
-(2, 7, 3, 'Nike trvit', 100, 1),
-(3, 10, 7, 'Reebook01', 1000000, 1),
-(4, 10, 10, 'Reebook04', 1337000, 1),
-(5, 11, 7, 'Reebook01', 1000000, 1),
-(6, 11, 10, 'Reebook04', 1337000, 1),
-(7, 12, 7, 'Reebook01', 1000000, 2),
-(8, 12, 10, 'Reebook04', 1337000, 1),
-(9, 13, 7, 'Reebook01', 1000000, 2),
-(10, 13, 10, 'Reebook04', 1337000, 1),
-(11, 14, 4, 'Nike 01', 27940000, 1),
-(12, 15, 9, 'Reebook03', 100000, 1),
-(13, 16, 7, 'Reebook01', 1000000, 1),
-(14, 17, 3, 'Nike trvit', 100, 1),
-(15, 17, 4, 'Nike 01', 27940000, 1),
-(16, 18, 4, NULL, NULL, 1);
+(21, 22, 36, 'Nike Dunk Low SE Lottery Pack Malachite Green', 5490000, 1),
+(22, 22, 34, 'Nike Blazer Mid Jumbo University Blue', 2250000, 1),
+(23, 23, 54, 'Chuck Taylor All Star Low \'Peony Pink\'', 990000, 1),
+(24, 23, 43, 'NMD R2 PK', 2950000, 1),
+(25, 24, 52, 'One Star Ox', 1750000, 3),
+(26, 25, 52, 'One Star Ox', 1750000, 1),
+(27, 25, 43, 'NMD R2 PK', 2950000, 1),
+(28, 26, 30, 'Nike Blazer Mid \'77 Vintage', 1499000, 1),
+(29, 26, 31, 'React Element 87 Red Orbit', 1790000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
@@ -171,25 +154,36 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `category_id`, `title`, `avatar`, `price`, `amount`, `summary`, `content`, `status`, `seo_title`, `seo_description`, `seo_keywords`, `created_at`, `updated_at`) VALUES
-(3, 1, 'Nike trvit', '1684501177-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 100, 0, '', '', 1, '', '', '', '2023-05-19 09:23:45', '2023-05-19 20:44:04'),
-(4, 1, 'Nike 01', '1684501107-product-pngtree-cartoon-thermometer-icon-download-image_2292413.png', 27940000, 0, '', '', 1, '', '', '', '2023-05-19 09:25:24', '2023-05-19 20:06:34'),
-(5, 1, 'Nike 02', '1684501116-product-pngtree-cartoon-thermometer-icon-download-image_2292413.jpg', 64240000, 0, '', '', 1, '', '', '', '2023-05-19 09:25:36', '2023-05-19 20:06:41'),
-(6, 1, 'Nike 03', '1684501130-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 13370000, 0, '', '', 1, '', '', '', '2023-05-19 09:25:48', '2023-05-19 19:58:50'),
-(7, 2, 'Reebook01', '1684508784-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 1000000, 0, '', '', 1, '', '', '', '2023-05-19 15:06:24', '2023-05-19 22:09:59'),
-(8, 2, 'Reebook02', '1684508798-product-648cloudwithrain2_100737.png', 13370000, 0, '', '', 1, '', '', '', '2023-05-19 15:06:38', '2023-05-19 22:10:02'),
-(9, 2, 'Reebook03', '1684508811-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 100000, 0, '', '', 1, '', '', '', '2023-05-19 15:06:51', '2023-05-19 22:10:06'),
-(10, 2, 'Reebook04', '1684508830-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 1337000, 0, '', '', 1, '', '', '', '2023-05-19 15:07:10', '2023-05-19 22:10:10'),
-(11, 1, 'Nike 05', '1684509768-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 13370000, 0, '', '', 1, '', '', '', '2023-05-19 15:22:48', NULL),
-(12, 1, 'Nike 06', '1684509783-product-fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e.jpg', 21560000, 0, '', '', 1, '', '', '', '2023-05-19 15:23:03', NULL);
+(30, 3, 'Nike Blazer Mid \'77 Vintage', '1685319338-product-blazer.jpg', 1499000, 50, '', '', 1, '', '', '', '2023-05-29 00:15:38', NULL),
+(31, 3, 'React Element 87 Red Orbit', '1685319365-product-react.jpg', 1790000, 10, '', '', 1, '', '', '', '2023-05-29 00:16:05', NULL),
+(32, 3, 'Jordan 1 Mid Banned 2020 ', '1685319491-product-jordan_one_mid.jpg', 4050000, 30, '', '', 1, '', '', '', '2023-05-29 00:18:11', NULL),
+(33, 3, 'Air Jordan 1 Mid ‘Hyper Royal’ ', '1685319517-product-jordan_one_mid_air.jpg', 3900000, 10, '', '', 1, '', '', '', '2023-05-29 00:18:37', NULL),
+(34, 3, 'Nike Blazer Mid Jumbo University Blue', '1685319565-product-nike_blazer_jumbo.jpg', 2250000, 10, '', '', 1, '', '', '', '2023-05-29 00:19:25', '2023-05-29 07:19:31'),
+(35, 3, 'Nike Air Force 1 07 All White', '1685319629-product-air_force.jpg', 2349000, 10, '', '', 1, '', '', '', '2023-05-29 00:20:29', NULL),
+(36, 3, 'Nike Dunk Low SE Lottery Pack Malachite Green', '1685319698-product-dunk_low_se.jpg', 5490000, 5, '', '', 1, '', '', '', '2023-05-29 00:21:38', NULL),
+(37, 3, 'Nike Blazer Low \'77 Jumbo \'White Black\'', '1685319753-product-junbo.jpg', 2890000, 5, '', '', 1, '', '', '', '2023-05-29 00:22:33', NULL),
+(38, 3, 'Nike Air Max 90 Terrascape', '1685319792-product-air_max.jpg', 3550000, 10, '', '', 1, '', '', '', '2023-05-29 00:23:12', NULL),
+(39, 7, 'Stan Smith - Xám/Trắng', '1685319946-product-stan.jpg', 1750000, 5, '', '', 1, '', '', '', '2023-05-29 00:25:46', NULL),
+(40, 7, 'Superstar Slipon W', '1685319973-product-super.jpg', 1850000, 10, '', '', 1, '', '', '', '2023-05-29 00:26:13', NULL),
+(41, 7, 'Swift Run - Trắng/Trắng', '1685320000-product-swift.jpg', 1850000, 15, '', '', 1, '', '', '', '2023-05-29 00:26:40', NULL),
+(42, 7, 'Pureboost Trainer ', '1685320037-product-pure.jpg', 2150000, 1, '', '', 1, '', '', '', '2023-05-29 00:27:17', NULL),
+(43, 7, 'NMD R2 PK', '1685320061-product-nmd.jpg', 2950000, 2, '', '', 1, '', '', '', '2023-05-29 00:27:41', NULL),
+(44, 6, 'Reebok Club C', '1685320316-product-clubc.jpg', 1290000, 5, '', '', 1, '', '', '', '2023-05-29 00:31:56', NULL),
+(45, 6, 'Aztrek', '1685320363-product-az.jpg', 2350000, 3, '', '', 1, '', '', '', '2023-05-29 00:32:43', NULL),
+(49, 10, 'One Star Ox', '1685320687-product-1.jpg', 1750000, 12, '', '', 1, '', '', '', '2023-05-29 00:38:07', NULL),
+(51, 10, 'One Star Ox', '1685320737-product-3.jpg', 1750000, 10, '', '', 1, '', '', '', '2023-05-29 00:38:57', NULL),
+(52, 10, 'One Star Ox', '1685320741-product-2.jpg', 1750000, 10, '', '', 1, '', '', '', '2023-05-29 00:39:01', NULL),
+(53, 10, 'Chuck 70', '1685320780-product-4.jpg', 1590000, 5, '', '', 1, '', '', '', '2023-05-29 00:39:40', NULL),
+(54, 10, 'Chuck Taylor All Star Low \'Peony Pink\'', '1685320813-product-6.jpg', 990000, 5, '', '', 1, '', '', '', '2023-05-29 00:40:13', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -211,121 +205,120 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `last_name`, `phone`, `address`, `email`, `avatar`, `jobs`, `last_login`, `facebook`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$Sai32K3OW6Vn42pUqI/R9eTJId3GPgAMpYKgRv95fQ88YCh0WzmxW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-05-19 08:12:00', NULL),
-(2, 'admin1', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2023-05-20 04:50:05', NULL);
+(1, 'admin', '$2y$10$Sai32K3OW6Vn42pUqI/R9eTJId3GPgAMpYKgRv95fQ88YCh0WzmxW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2023-05-19 08:12:00', NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `news`
+-- Chỉ mục cho bảng `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order_details`
+-- Chỉ mục cho bảng `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `products`
+-- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `news`
+-- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `order_details`
+-- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `news`
+-- Các ràng buộc cho bảng `news`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `order_details`
+-- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `products`
+-- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);

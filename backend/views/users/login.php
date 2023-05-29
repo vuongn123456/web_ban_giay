@@ -37,7 +37,7 @@
                                         <input type="submit" class="btn btn-primary btn-lg" value="Đăng nhập" name="submit">
                                     </div>
                                 </form>
-                                <p class="mt-5 login-form__footer text-center">Chưa có tài khoản <a href="index.php?controller=user&action=register" class="text-primary">Đăng ký </a> ngay</p>
+                                <p class="mt-5 login-form__footer text-center">Chưa có tài khoản <a href="register.html" class="text-primary">Đăng ký </a> ngay</p>
                                 <p></p>
                             </div>
                         </div>

@@ -106,7 +106,7 @@ require_once 'helpers/Helper.php';
                         foreach ($products AS $product):
 //                            $slug = Helper::getSlug($product['title']);
 //                            $product_link = "san-pham/$slug/" . $product['id'] . ".html";
-//                            $product_cart_add = "them-vao-gio-hang/" . $product['id'] . ".html";
+                            $product_cart_add = "them-vao-gio-hang/" . $product['id'] . ".html";
                             ?>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
@@ -115,12 +115,14 @@ require_once 'helpers/Helper.php';
                                                 <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
                                                 <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a>
                                                 </li>
-                                                <li><a href="index.php?controller=product&action=detail&id=<?= $product['id'] ?>"><img src="assets/img/icon/search.png"><span>Chi tiết</span></a></li>
+                                                <li>
+                                                    <a href="index.php?controller=product&action=detail&id=<?= $product['id'] ?>"><img src="assets/img/icon/search.png"><span>Chi tiết</span></a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="product__item__text">
                                             <h6><?= $product['title'] ?></h6>
-                                            <a href="index.php?controller=cart&action=add&id=<?= $product['id'] ?>" class="add-cart" data-id="<?php echo $product['id'] ?>">+ Thêm vào giỏ</a>
+                                            <a href="<?php echo $product_cart_add ?>" class="add-cart" data-id="<?php echo $product['id'] ?>">+ Thêm vào giỏ</a>
 
                                             <h5><?php echo number_format($product['price']) ?><sup>đ</sup></h5>
                                         </div>

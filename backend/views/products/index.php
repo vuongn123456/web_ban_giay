@@ -38,7 +38,7 @@
                         <img height="80" src="assets/uploads/<?php echo $product['avatar'] ?>"/>
                     <?php endif; ?>
                 </td>
-                <td><?php echo number_format($product['price']) ?></td>
+                <td><?php echo number_format($product['price']) ?><sup>đ</sup></td>
                 <td><?php echo $product['amount'] ?></td>
                 <td><?php echo $product['summary'] ?></td>
                 <td><?php echo $product['content'] ?></td>
